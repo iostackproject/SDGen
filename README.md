@@ -59,7 +59,7 @@ storing and loading DCs, enabling users to easily creating
 and sharing them.
 
 <p align="center">
-  <img width="500" src="https://raw.github.com/iostackproject/SDGen/master/res/sdgen-architecture.png">
+  <img width="500" src="http://ast-deim.urv.cat/web/images/software/SDGen/sdgen_architecture.png">
 </p>
 
 # Generation Phase
