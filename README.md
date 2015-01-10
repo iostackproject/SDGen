@@ -9,6 +9,8 @@ SDGen
   - [Generation Phase](#generation-phase)
 - [How to Extend SDGen](#how-to-extend-sdgen)
 - [A Data Mimicking Method](#a-data-mimicking-method)
+  - [Method Rationale](#method-rationale)
+  - [Implementation](#implementation)
 - [Integration with Benchmarks](#integration-with-benchmarks)
 - [Licensing](#licensing)
 - [Contact](#contact)
@@ -121,6 +123,100 @@ data the input array.
 SDGen manages the life-cycle of the user-defined
 modules to scan/generate data, which are loaded from
 a simple configuration file. 
+
+# A Data Mimicking Method
+Next, we describe a practical example of how to make use of the framework integrating
+novel data mimicking mehtods. Concretely, our method implemented in SDGen tries to
+emulate the compression ratios and times of a target dataset for a variety of compression
+engines (lz4, zlib,...). 
+
+# Method Rationale
+
+Mimicking data for compressors requires first to understand
+how they compress data. Technically, the compressors
+we target encode (i) each repetition by length and
+back point distance, and (ii) bytes or literals. Moreover,
+compressors using Huffman codes encode lengths, back
+point distances and bytes based on their frequencies.
+
+<p align="center">
+  <img width="500" src="http://ast-deim.urv.cat/web/images/software/SDGen/sdgen_method_rationale.png">
+</p>
+
+Given that, we identified two main characteristics that
+affect the behavior of compression algorithms: repetition
+length distribution and frequencies of bytes. First, compression
+algorithms exploit the existence of n repeated
+sequences within a data chunk by substituting the remaining
+n-1 repetitions by pointers to the first one.
+However, we empirically found that the distribution of
+repetitions tends to follow a power-law. As can
+be seen in the previous figure (left), the majority of repetitions are
+short ones (< 10 bytes). Consequently, compression algorithms
+perform many operations to exploit these small
+repetitions, which in turn has an impact on performance.
+
+Second, several compression algorithms resort to encoding
+schemes (e.g. Huffman coding) to represent the
+bytes within a data chunk in the shortest way possible.
+In essence, the encoding associates identifiers to bytes so
+that the most frequent bytes are represented by the lower
+(shorter) identifiers, saving storage space. Therefore, to
+generate synthetic content we must also take into account
+the distribution of bytes during the scan process. As we
+observe in the previous figure (right), the skew in the distribution
+of byte frequency changes significantly from text files to
+random-like data (PDFs). This may impact the encoding
+process speed. These observations guided the design of
+our mimicking method for compression algorithms.
+
+# Implementation
+
+Following the first point mentioned in "How to Extend SDGen",
+to capture the aforementioned data characteristics, in our
+method every Chunk Characterization (CC) contains:
+
+- Byte frequency histogram. We build a histogram that
+relates the bytes that appear in a data chunk with their
+frequencies, encoding it as a <byte, frequency> map
+that we use to generate synthetic data that mimics this
+byte distribution. This information is key to emulate the
+entropy of the original data, among other aspects.
+
+- Repetition length histogram. To encode this histogram,
+we use a map whose keys represent the length of repetitions
+found in a chunk and the values are frequencies of
+repetitions of a given length. Our aim is to mimic the distribution
+of repetition lengths in the synthetic data. For
+repetition finding, we use the zlib’s Deflate algorithm.
+
+- Compression ratio. Every CC also includes the compression
+ratio of the original data chunk. In the generation
+phase, SDGen will try to create a synthetic chunk
+with similar compressibility.
+
+Our CC module (MotifChunkCharacterization) is located in package
+com.ibm.characterization.user and extends
+AbstractChunkCharacterization, as other data mimicking methods should do.
+
+Second, we need specific scanners to fill CCs when scanning a targeted
+dataset. To this end, we created two scanners: DataCompressibilityScanner
+that extracts from a data chunk the compression ratio and the
+repetition length histogram, and AlphabetScanner that gets the
+distribution of bytes within a data chunk. Both scanners are located
+at package com.ibm.scan.user and extend from AbstractChunkScanner,
+as other user-defined scanners should do.
+
+Finally, we created a data generation algorithm that is called
+by DataProducer every time a new synthetic chunk of data is created.
+Very succintly, the algorithm interleaves random and repeated data whose
+lengths and byte distributions are drawn by the histograms captured
+in the CC that represents a real data chunk. The ratio at which
+random and repeated sequences are interleaved is dictated by the
+compression ratio of the scanned data chunk. This algorithm is
+implemented in the class MotifDataGenerator and extends AbstractDataGenerator. As other
+user-defined data generation algorithms, this class is located at
+package com.ibm.generation.user.
 
 # Integration with Benchmarks
 At this moment, we integrated SDGen as a data generation layer with Impressions 
