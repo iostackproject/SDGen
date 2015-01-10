@@ -7,9 +7,9 @@ SDGen
 - [Architecture](#architecture)
   - [Scan Phase: Characterizations](#scan-phase) 
   - [Generation Phase](#generation-phase)
-- [How to Extend SDGen](#extension)
-- [A Data Mimicking Method](#mimicking)
-- [Integration with Benchmarks](#integration)
+- [How to Extend SDGen](#How-to-Extend-SDGen)
+- [A Data Mimicking Method](#A-Data-Mimicking-Method)
+- [Integration with Benchmarks](#Integration-with-Benchmarks)
 - [Licensing](#licensing)
 - [Contact](#contact)
 
