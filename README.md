@@ -93,7 +93,7 @@ Technically, successive executions of this method will retrieve
 subparts of a synthetic chunk until it is exhausted
 and a new one is created.
 
-#How to Extend SDGen
+# How to Extend SDGen
 SDGen enables users to integrate novel data generation
 methods in the framework. To this end, one should follow
 three steps:
@@ -125,7 +125,6 @@ a simple configuration file.
 # Integration with Benchmarks
 At this moment, we integrated SDGen as a data generation layer with Impressions 
 (http://research.cs.wisc.edu/adsl/Software/Impressions) and LinkBench (https://github.com/facebook/linkbench).
-
 
 # Issue Tracking
 We use the GitHub issue tracking.
