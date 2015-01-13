@@ -230,4 +230,4 @@ SDGen is licensed under the GPLv3. Check [LICENSE](LICENSE) for the latest
 licensing information.
 
 # Contact
-Visit www.iostack.eu for contact information.
+Visit http://ast-deim.urv.cat or http://www.iostack.eu for contact information.
