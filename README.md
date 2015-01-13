@@ -11,6 +11,7 @@ SDGen
 - [A Data Mimicking Method](#a-data-mimicking-method)
   - [Method Rationale](#method-rationale)
   - [Implementation](#implementation)
+- [A "Hello World" Test](#a-"hello-world"-test)
 - [Integration with Benchmarks](#integration-with-benchmarks)
 - [Licensing](#licensing)
 - [Contact](#contact)
@@ -218,8 +219,21 @@ implemented in the class MotifDataGenerator and extends AbstractDataGenerator. A
 user-defined data generation algorithms, this class is located at
 package com.ibm.generation.user.
 
+# A "Hello World" Test
+Next, we describe how to run a simple test with the framework (com.ibm.test.HelloWorldTest).
+This tests consists in the following parts that show the usability of the framework:
+1.- The test scans a dataset.
+2.- Once the scan finishes, we persist a dataset characterization that can be shared with others.
+3.- We load the characterization to check that loading a characterization works
+4.- We load the characterization in the DataProducer to generate a synthetic dataset similar to the original one.
+5.- Finally, we compare the compression ratio and time of these datasets for various compression engines chunk-by-chunk.
+
+As a startign point, you can run this test with well-known datasets, such as the Canterbury/Calgary corpus (http://corpus.canterbury.ac.nz) or the Silesia corpus (http://www.data-compression.info/Corpora/SilesiaCorpus/index.htm).
+
+Finally, we provide various dataset characterizations that had been build from scanning real datasets (/dataset_characterizations). Of course, you can scan, build and share new dataset characterizations from your own data or other datasets. That's the point of the framework.
+
 # Integration with Benchmarks
-At this moment, we integrated SDGen as a data generation layer with Impressions 
+At this moment, we provide modules for a basic integration of SDGen as a data generation layer with Impressions 
 (http://research.cs.wisc.edu/adsl/Software/Impressions) and LinkBench (https://github.com/facebook/linkbench).
 
 # Issue Tracking
@@ -230,4 +244,4 @@ SDGen is licensed under the GPLv3. Check [LICENSE](LICENSE) for the latest
 licensing information.
 
 # Contact
-Visit http://ast-deim.urv.cat or http://www.iostack.eu for contact information.
+Visit http://ast-deim.urv.cat or http://iostack.eu for contact information.
