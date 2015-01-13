@@ -11,7 +11,7 @@ SDGen
 - [A Data Mimicking Method](#a-data-mimicking-method)
   - [Method Rationale](#method-rationale)
   - [Implementation](#implementation)
-- [A "Hello World" Test](#a-"hello-world"-test)
+- [A "Hello World" Test](#a-hello-world-test)
 - [Integration with Benchmarks](#integration-with-benchmarks)
 - [Licensing](#licensing)
 - [Contact](#contact)
