@@ -222,13 +222,18 @@ package com.ibm.generation.user.
 # A "Hello World" Test
 Next, we describe how to run a simple test with the framework (com.ibm.test.HelloWorldTest).
 This tests consists in the following parts that show the usability of the framework:
+
 1.- The test scans a dataset.
+
 2.- Once the scan finishes, we persist a dataset characterization that can be shared with others.
-3.- We load the characterization to check that loading a characterization works
+
+3.- We load the characterization to check that loading a characterization works.
+
 4.- We load the characterization in the DataProducer to generate a synthetic dataset similar to the original one.
+
 5.- Finally, we compare the compression ratio and time of these datasets for various compression engines chunk-by-chunk.
 
-As a startign point, you can run this test with well-known datasets, such as the Canterbury/Calgary corpus (http://corpus.canterbury.ac.nz) or the Silesia corpus (http://www.data-compression.info/Corpora/SilesiaCorpus/index.htm).
+As a starting point, you can run this test with well-known datasets, such as the Canterbury/Calgary corpus (http://corpus.canterbury.ac.nz) or the Silesia corpus (http://www.data-compression.info/Corpora/SilesiaCorpus/index.htm).
 
 Finally, we provide various dataset characterizations that had been build from scanning real datasets (/dataset_characterizations). Of course, you can scan, build and share new dataset characterizations from your own data or other datasets. That's the point of the framework.
 
