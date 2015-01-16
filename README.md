@@ -221,7 +221,7 @@ package com.ibm.generation.user.
 
 # A "Hello World" Test
 Next, we describe how to run a simple test with the framework (com.ibm.test.HelloWorldTest).
-This tests consists in the following parts that show the usability of the framework:
+This test consists of the following parts that show the usability of the framework:
 
 1.- The test scans a dataset.
 
