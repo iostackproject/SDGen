@@ -8,7 +8,7 @@ SDGen
   - [Scan Phase: Characterizations](#scan-phase) 
   - [Generation Phase](#generation-phase)
 - [How to Extend SDGen](#how-to-extend-sdgen)
-- [A Data Mimicking Method](#a-data-mimicking-method)
+- [A Data Mimicking Method for Compression](#a-data-mimicking-method-for-compression)
   - [Method Rationale](#method-rationale)
   - [Implementation](#implementation)
 - [A "Hello World" Test](#a-hello-world-test)
@@ -125,7 +125,7 @@ SDGen manages the life-cycle of the user-defined
 modules to scan/generate data, which are loaded from
 a simple configuration file. 
 
-# A Data Mimicking Method
+# A Data Mimicking Method for Compression
 Next, we describe a practical example of how to make use of the framework integrating
 novel data mimicking mehtods. Concretely, our method implemented in SDGen tries to
 emulate the compression ratios and times of a target dataset for a variety of compression
